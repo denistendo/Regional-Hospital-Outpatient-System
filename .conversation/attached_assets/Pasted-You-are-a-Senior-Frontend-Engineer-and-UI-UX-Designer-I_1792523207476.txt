@@ -1,0 +1,96 @@
+You are a Senior Frontend Engineer and UI/UX Designer. I need you to build a complete, highly professional, fully interactive React web application from scratch for a "Regional Referral Hospital Outpatient Management System". 
+
+Do NOT skip any steps. Follow the architecture, logic, and design system exactly as specified below.
+
+=========================================
+1. TECH STACK & SETUP
+=========================================
+- Framework: React (Vite)
+- Styling: Tailwind CSS
+- Routing: React Router DOM
+- Icons: Lucide React
+- State Management: React Context API
+- Toasts/Notifications: react-hot-toast (or a custom Context-based toast system)
+
+=========================================
+2. GLOBAL UI/UX DESIGN SYSTEM
+=========================================
+The application must look like a premium, modern healthcare app. Do not use default browser styles.
+- **Typography:** Use 'Inter', sans-serif. Headings (text-gray-900, font-bold), Body (text-gray-600), Muted (text-gray-400).
+- **Colors:** 
+  - App Background: #F8FAFC (very soft gray).
+  - Cards: #FFFFFF (pure white) with `rounded-2xl`, `shadow-sm`, `p-5`.
+  - Primary (Medical Blue): #1E6FD9
+  - Success (Green): #10B981
+  - Warning (Orange): #F59E0B
+  - Danger (Red): #EF4444
+- **Buttons:** All buttons must have `rounded-xl`, `p-3` or `p-4`, and hover states. Primary buttons have a solid blue background and white text.
+- **Layout Wrapper:** Create a `Layout` component that handles fixed navigation. 
+  - For **Patients**: A fixed bottom navigation bar with icons (Home, Book, Records, Profile). The main content area MUST have `padding-bottom: 80px` so content is never hidden behind the nav.
+  - For **Staff**: A fixed top header (with Logout button) and a sidebar or top-tabs for navigation. No bottom nav.
+
+=========================================
+3. STATE MANAGEMENT & MOCK DATA (Context)
+=========================================
+Set up a `GlobalContext` to manage the app state. Pre-populate it with:
+- **Auth State:** `currentUser` (role: 'patient', 'triage', 'doctor', 'admin').
+- **Mock Doctors:** Dr. Musoke (Cardiology), Dr. Achieng (Pediatrics), Dr. Ouma (General).
+- **Mock Patients List:** Initialize 3 patients in different states:
+  1. Grace (Walk-in): Symptom text: "Chest pain and shortness of breath". State: 'waiting_for_triage'.
+  2. John (Appointment): Booked with Dr. Achieng. State: 'waiting_for_triage'.
+  3. Mary (Post-Triage): Assigned to Dr. Musoke. Vitals recorded. State: 'with_doctor'.
+- **State Functions:** `login(role)`, `logout()`, `addPatient()`, `assignDoctor(patientId, doctorId, vitals)`, `sendReferral(patientId, department, reason)`.
+
+=========================================
+4. AUTHENTICATION & ROUTING FLOW
+=========================================
+- **Route `/` (Landing):** Clean layout, two large buttons: "I am a Patient" and "I am Hospital Staff".
+- **Route `/auth/patient`:** Form (Name, Phone). On submit -> set role to 'patient' -> route to `/patient/home`.
+- **Route `/auth/staff`:** Form (Staff ID, Password) AND a Radio Button Role Selector ("Triage", "Doctor", "Admin"). On submit -> set role -> route to respective dashboard (`/staff/triage`, `/staff/doctor`, `/staff/admin`).
+
+=========================================
+5. PATIENT FLOW (End-to-End Tasks)
+=========================================
+- **Patient Home (`/patient/home`):** Shows welcome message. Card showing current status (e.g., "You are in the Triage Queue" or "No active visits"). Big action buttons.
+- **Booking (`/patient/book`):** Two cards:
+  - "I know who I need": Select specialty -> Select doctor -> Select time.
+  - "I am not sure": Text area for symptoms.
+  - On Submit: Toast notification "Booking Sent". Update state. Route to Home. Status changes to "In Triage Queue".
+- **Check In (`/patient/checkin`):** Input for Patient ID. Button "Check In". Updates state to 'waiting_for_triage'.
+- **Visit Tracker (`/patient/tracker`):** Shows vertical progress (Reception -> Triage -> Doctor -> Pharmacy). Highlight current step based on patient state.
+
+=========================================
+6. STAFF DASHBOARDS & GATEKEEPER LOGIC
+=========================================
+- **Triage Dashboard (`/staff/triage`):**
+  - ONLY shows patients where state == 'waiting_for_triage'.
+  - Split into tabs: "Walk-ins" and "Appointments".
+  - Click a patient -> opens a modal/page with the Vitals Form (BP, Temp, Weight, Priority).
+  - Form includes a dropdown: "Assign to Doctor".
+  - On Submit "Complete Triage": Change patient state to 'with_doctor', assign doctor ID. Toast: "Patient sent to Doctor".
+- **Doctor Dashboard (`/staff/doctor`):**
+  - ONLY shows patients where state == 'with_doctor' AND assigned to the logged-in doctor.
+  - Click a patient -> View Vitals and Symptoms.
+  - Button: "Send Referral".
+  - Referral Modal: Select Department (Radiology, Lab), Reason, Urgency. On submit, create referral, update patient state to 'referred'. Toast: "Referral sent to [Dept]".
+- **Records Admin Dashboard (`/staff/admin`):**
+  - High-level stats cards (Total Patients Today, Currently in Triage, Currently with Doctors).
+  - A clean table showing ALL patients and their current locations/states.
+  - Access to the Referral Inbox.
+
+=========================================
+7. CROSS-DEPARTMENTAL REFERRALS
+=========================================
+- Add a "Referrals" tab in the Staff navigation (accessible to Triage and Admin).
+- This page shows a list of all referrals created by doctors.
+- Display: Patient Name, Referred By, Destination Department, Reason, Urgency (color-coded badge).
+
+=========================================
+8. FINAL INTERACTIVITY REQUIREMENTS
+=========================================
+- All text inputs must function and hold state.
+- Buttons must have visual feedback on click.
+- The flow MUST be end-to-end testable. You should be able to log in as a patient, book a walk-in, log out, log in as Triage, assign that patient, log out, log in as Doctor, and see the patient.
+- Add a floating "Reset Prototype" button in the bottom right corner of the screen that reloads the page to reset all state to initial mock data.
+
+Build this complete application now. Structure the code cleanly using separate components for Layouts, Screens, and UI elements.

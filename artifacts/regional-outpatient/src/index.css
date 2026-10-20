@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background)); --color-foreground: hsl(var(--foreground)); --color-border: hsl(var(--border)); --color-input: hsl(var(--input)); --color-ring: hsl(var(--ring));
+  --color-card: hsl(var(--card)); --color-card-foreground: hsl(var(--card-foreground)); --color-card-border: hsl(var(--card-border));
+  --color-popover: hsl(var(--popover)); --color-popover-foreground: hsl(var(--popover-foreground)); --color-popover-border: hsl(var(--popover-border));
+  --color-primary: hsl(var(--primary)); --color-primary-foreground: hsl(var(--primary-foreground)); --color-secondary: hsl(var(--secondary)); --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted)); --color-muted-foreground: hsl(var(--muted-foreground)); --color-accent: hsl(var(--accent)); --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive)); --color-destructive-foreground: hsl(var(--destructive-foreground)); --color-sidebar: hsl(var(--sidebar)); --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --font-sans: var(--app-font-sans); --font-serif: var(--app-font-serif); --font-mono: var(--app-font-mono); --radius-sm: calc(var(--radius) - 4px); --radius-md: calc(var(--radius) - 2px); --radius-lg: var(--radius); --radius-xl: calc(var(--radius) + 4px);
+}
+:root {
+ --background:210 17% 94%; --foreground:218 18% 17%; --border:210 13% 87%; --card:210 18% 98%; --card-foreground:218 18% 17%; --card-border:210 13% 88%;
+ --sidebar:210 17% 94%; --sidebar-foreground:218 18% 22%; --sidebar-border:210 13% 88%; --sidebar-primary:218 18% 17%; --sidebar-primary-foreground:0 0% 98%; --sidebar-accent:140 20% 83%; --sidebar-accent-foreground:218 18% 17%; --sidebar-ring:143 24% 52%;
+ --popover:210 18% 98%; --popover-foreground:218 18% 17%; --popover-border:210 13% 88%; --primary:145 22% 42%; --primary-foreground:0 0% 100%; --secondary:140 16% 88%; --secondary-foreground:218 18% 22%;
+ --muted:210 16% 91%; --muted-foreground:215 10% 48%; --accent:140 20% 86%; --accent-foreground:218 18% 19%; --destructive:0 62% 52%; --destructive-foreground:0 0% 100%; --input:210 13% 84%; --ring:145 22% 42%;
+  --chart-1:145 22% 42%; --chart-2:201 26% 56%; --chart-3:32 55% 63%; --chart-4:260 18% 67%; --chart-5:0 52% 65%; --app-font-sans:'Inter',sans-serif; --app-font-serif:'Inter',sans-serif; --app-font-mono:'Inter',monospace; --radius:.8rem;
+ --button-outline:rgba(0,0,0,.1); --badge-outline:rgba(0,0,0,.05); --elevate-1:rgba(0,0,0,.03); --elevate-2:rgba(0,0,0,.08); --tracking-normal:0em; --spacing:.25rem;
+ --shadow-2xs:0 1px 2px rgba(29,40,34,.04); --shadow-xs:0 2px 5px rgba(29,40,34,.05); --shadow-sm:0 3px 10px rgba(29,40,34,.06); --shadow:0 4px 14px rgba(29,40,34,.07); --shadow-md:0 8px 22px rgba(29,40,34,.09); --shadow-lg:0 12px 30px rgba(29,40,34,.12); --shadow-xl:0 18px 40px rgba(29,40,34,.14); --shadow-2xl:0 24px 50px rgba(29,40,34,.18);
+}
+.dark { --background:220 16% 13%; --foreground:210 18% 92%; --border:220 12% 27%; --card:220 15% 17%; --card-foreground:210 18% 92%; --card-border:220 12% 27%; --sidebar:220 16% 13%; --sidebar-foreground:210 18% 92%; --popover:220 15% 17%; --popover-foreground:210 18% 92%; --primary:145 28% 57%; --primary-foreground:220 16% 13%; --secondary:220 12% 23%; --secondary-foreground:210 18% 92%; --muted:220 12% 23%; --muted-foreground:215 10% 67%; --accent:220 12% 23%; --accent-foreground:210 18% 92%; --destructive:0 58% 58%; --destructive-foreground:0 0% 100%; --input:220 12% 30%; --ring:145 28% 57%; }
+@layer base { * { @apply border-border; } body { @apply font-sans antialiased bg-background text-foreground; min-width:320px; } button,a,input,select,textarea { -webkit-tap-highlight-color:transparent; } }
+.app-shell { max-width:1480px; min-height:calc(100dvh - 32px); margin:16px auto; border:1px solid rgba(255,255,255,.9); border-radius:28px; background:#e9ebea; box-shadow:0 8px 32px rgba(34,42,40,.08),inset 0 0 0 1px rgba(91,104,97,.06); overflow:hidden; }
+.staff-layout { display:grid; grid-template-columns:224px minmax(0,1fr); min-height:calc(100dvh - 34px); }
+.side-link { display:flex; align-items:center; gap:12px; width:100%; border:0; padding:12px 14px; border-radius:999px; text-align:left; color:#47504d; font-size:13px; transition:background .18s,color .18s,transform .18s; }
+.side-link:hover { background:#dfe3e1; transform:translateX(2px); }.side-link.active { background:#252a28;color:#f7f8f7;box-shadow:0 3px 8px #2222; }
+.panel { background:rgba(250,251,250,.86);border:1px solid rgba(255,255,255,.95);border-radius:20px;box-shadow:0 3px 12px rgba(35,43,39,.035); }
+.sage-panel { background:linear-gradient(145deg,#c8d8c5,#b8cbb9);border:1px solid rgba(255,255,255,.65);border-radius:20px; }
+.field { width:100%;border:1px solid #d7ddda;background:#f7f8f7;border-radius:12px;padding:12px 14px;color:#27302c;outline:none;transition:border-color .16s,box-shadow .16s; }
+.field:focus { border-color:#819c88;box-shadow:0 0 0 3px rgba(109,143,118,.16); }
+.btn-primary { background:#282e2b;color:white;border-radius:12px;font-weight:600;transition:transform .15s,background .15s,box-shadow .15s; }.btn-primary:hover { background:#3d4842;box-shadow:0 4px 10px #252d2920;transform:translateY(-1px); }.btn-primary:active { transform:scale(.99); }
+.btn-soft { background:#e4e9e5;color:#37423b;border-radius:12px;transition:background .15s,transform .15s; }.btn-soft:hover { background:#d7e0d9;transform:translateY(-1px); }
+.toast { animation:toast-in .22s ease-out; } @keyframes toast-in { from {opacity:0;transform:translateY(8px)} to {opacity:1;transform:translateY(0)} }
+@media(max-width:760px){.app-shell{margin:0;min-height:100dvh;border-radius:0;border:0}.staff-layout{display:block;min-height:100dvh}.staff-sidebar{display:none}.staff-main{padding-bottom:24px}.patient-content{padding-bottom:100px!important}.patient-bottom{position:fixed;bottom:10px;left:12px;right:12px;z-index:30}.reset-control{bottom:78px!important;right:12px!important;padding:8px 11px!important;font-size:10px!important}}
