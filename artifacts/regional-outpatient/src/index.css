@@ -35,5 +35,9 @@
 .field.has-icon { padding-left:40px; }
 .btn-primary { background:#282e2b;color:white;border-radius:12px;font-weight:600;transition:transform .15s,background .15s,box-shadow .15s; }.btn-primary:hover { background:#3d4842;box-shadow:0 4px 10px #252d2920;transform:translateY(-1px); }.btn-primary:active { transform:scale(.99); }
 .btn-soft { background:#e4e9e5;color:#37423b;border-radius:12px;transition:background .15s,transform .15s; }.btn-soft:hover { background:#d7e0d9;transform:translateY(-1px); }
+.staff-bottom { display:none; }
+:focus-visible { outline:2px solid #5c7a67; outline-offset:2px; }
+.field:focus-visible { outline:none; }
+.btn-primary:focus-visible, .btn-soft:focus-visible { outline:2px solid #5c7a67; outline-offset:2px; }
 .toast { animation:toast-in .22s ease-out; } @keyframes toast-in { from {opacity:0;transform:translateY(8px)} to {opacity:1;transform:translateY(0)} }
-@media(max-width:760px){.app-shell{margin:0;min-height:100dvh;border-radius:0;border:0}.staff-layout{display:block;min-height:100dvh}.staff-sidebar{display:none}.staff-main{padding-bottom:24px}.patient-content{padding-bottom:100px!important}.patient-bottom{position:fixed;bottom:10px;left:12px;right:12px;z-index:30}}
+@media(max-width:760px){.app-shell{margin:0;min-height:100dvh;border-radius:0;border:0}.staff-layout{display:block;min-height:100dvh}.staff-sidebar{display:none}.staff-main{padding-bottom:96px}.staff-bottom{display:flex}.patient-content{padding-bottom:100px!important}.patient-bottom{position:fixed;bottom:10px;left:12px;right:12px;z-index:30}}
